@@ -18,7 +18,7 @@ public class Finish : MonoBehaviour
     {
         Player p = other.GetComponent<Player>();
 
-        if (p != null )
+        if (p == null )
             return;
 
         UIManager.instance.ShowNotiText($"You Win!\nPoint : {p.Point}");

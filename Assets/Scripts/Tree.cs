@@ -24,12 +24,14 @@ public class Tree : MonoBehaviour
                 return;
 
         player.Hp -= 15;
-        UIManager.Instance.ShowNotiText($"You hit the tree!\nHurt -15\nHP: {player.Hp}");
+        UIManager.instance.ShowNotiText($"Hurt -15\nHP: {player.Hp}");
 
         if (player.Hp <= 0)
         { 
             player.Hp = 0;
-            UIManager.Instance.ShowNotiText($"Game Over!");
+            UIManager.instance.ShowNotiText($"Game Over!\n Point : {player.Point}");
+            Time.timeScale = 0f;
+            UIManager.instance.ShowHideRestartButton(true);
         }
     }
     private void OnCollisionExit(Collision collision)
