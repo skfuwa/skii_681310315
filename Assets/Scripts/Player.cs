@@ -1,16 +1,48 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField]
+    private float forcePower;
+
+    [SerializeField]
+    private Rigidbody rb;
+
+    private InputAction moveAction;
+    private Vector2 moveValue;
+
+    [SerializeField]
+    private int point;
+    public int Point
     {
-        
+        get { return point; }
+        set { point = value; }
     }
 
-    // Update is called once per frame
+    [SerializeField]
+    private int hp;
+    public int Hp
+    {
+        get { return hp; }
+        set { hp = value; }
+    }
+
+    void Start()
+    {
+        moveAction = InputSystem.actions.FindAction("Move");
+        rb = GetComponent<Rigidbody>();
+    }
+
+    
     void Update()
     {
-        
+        MoveLeftorRight();
+    }
+
+    private void MoveLeftorRight()
+     { 
+        moveValue = moveAction.ReadValue<Vector2>(); 
+        rb.AddForce(moveValue.x*Vector3.right * forcePower);
     }
 }
