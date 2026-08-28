@@ -19,12 +19,18 @@ public class Tree : MonoBehaviour
     {
             rd.material.color = Color.red;
             Player player = collision.gameObject.GetComponent<Player>();
+
             if (player == null) 
                 return;
 
         player.Hp -= 15;
+        UIManager.Instance.ShowNotiText($"You hit the tree!\nHurt -15\nHP: {player.Hp}");
 
-
+        if (player.Hp <= 0)
+        { 
+            player.Hp = 0;
+            UIManager.Instance.ShowNotiText($"Game Over!");
+        }
     }
     private void OnCollisionExit(Collision collision)
     {
