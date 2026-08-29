@@ -3,14 +3,36 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void Startgame () 
+    [SerializeField]
+    private GameObject adjustPanel;
+
+    void Start()
     {
-        SceneManager.LoadScene("Scene01");
+        AudioManager.instance.PlayBGM(0);
     }
 
-    public void Exit()
+
+    void Update()
+    {
+
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("Loading");
+    }
+    
+    public void ExitGame()
     {
         Application.Quit();
     }
+    public void ShowHideAdjustPanel(bool flag)
+    {
+        adjustPanel.SetActive(flag);
 
+    }
+    public void SetVolume(float volume)
+    {
+        AudioManager.instance.AdjustMasterVolume(volume);
+    }
 }
